@@ -2,11 +2,16 @@
 name: X64-Lede
 
 on:
-  #自动编译：每天早上4点
+  #自动编译：每个月的1号凌晨1点
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 01 01 * *
   #手动编译
   workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 #CI权限
 permissions: write-all
@@ -22,10 +27,10 @@ jobs:
       #默认主题
       OWRT_THEME: design
       #默认主机名
-      OWRT_NAME: OWRT
+      OWRT_NAME: RobinWrt
       #默认密码，仅作展示，请勿乱改
       OWRT_PW: password
       #默认地址
-      OWRT_IP: 192.168.2.1
+      OWRT_IP: 192.168.1.2
       #默认源码
       OWRT_URL: https://github.com/coolsnowwolf/lede.git
